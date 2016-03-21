@@ -28,13 +28,7 @@ namespace SystemUtils
                 {
                     int color = charArray[((i / sizeMultiplier) * iconPack.iconPackSize) + (j / sizeMultiplier)];
                     if (color != 0)
-                    {
-                        if (color == 64)
-                        {
-                            color = 0;
-                        }
                         driver.setPixel(x + j, y + i, color);
-                    }
                 }
             }
         }

@@ -18,13 +18,16 @@ namespace Display
 
         override public void setPixel(int x, int y, int c)
         {
-            buffer[x+(y*320)] = (byte)c;
+            if (buffer[x + (y * 320)] != (byte)c)
+                buffer[x + (y * 320)] = (byte)c;
+            else
+                buffer[x + (y * 320)] = 255;
         }
 
         public void setRealPixel(int x, int y, int c)
         {
             base.setPixel(x, y, c);
-            buffer[x + (y * 320)] = 99;
+            buffer[x + (y * 320)] = 255;
         }
 
         public override byte getPixel(int x, int y)
@@ -60,13 +63,12 @@ namespace Display
             {
                 for (int y = 0; y < buffer.Length/320; y++)
                 {
-                    if (buffer[x + (y * 320)]!=99)
+                    if (buffer[x + (y * 320)]!=255)
                     {
                         base.setPixel(x, y, buffer[x + (y * 320)]);
                     }
                 }
             }
-            clear(0);
         }
 
         public override void step()
