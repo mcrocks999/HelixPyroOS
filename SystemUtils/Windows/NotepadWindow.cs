@@ -16,7 +16,7 @@ namespace Windows
         public static int width = 150;
         public static int height = 100;
 
-        public static Boolean isVisible = false;
+        public static Boolean isVisible = true;
 
         public static void reset()
         {
@@ -35,33 +35,33 @@ namespace Windows
                 {
                     for (int i2 = 0; i2 <= height; i2++)
                     {
-                        display.setPixel(i + x, i2 + y, 63);
-                    }
-                }
-                for (int i = 0; i <= 20; i++)
-                {
-                    for (int i2 = 0; i2 <= 20; i2++)
-                    {
-                        display.setPixel(x + width - i, y + height - i2, 63);
+                        display.setPixel(i + x, i2 + y, 41);
                     }
                 }
                 for (int i = 0; i <= width; i++)
                 {
-                    display.setPixel(i + x, y, 0);
-                    display.setPixel(i + x, y + 20, 0);
-                    display.setPixel(i + x, y + height, 0);
+                    for (int i2 = 0; i2 <= 20; i2++)
+                    {
+                        display.setPixel(x + i, y + i2, 40);
+                    }
+                }
+                for (int i = 0; i <= width; i++)
+                {
+                    display.setPixel(i + x, y, 25);
+                    display.setPixel(i + x, y + 20, 25);
+                    display.setPixel(i + x, y + height, 25);
                 }
                 for (int i = 0; i <= height; i++)
                 {
-                    display.setPixel(x, y + i, 0);
-                    display.setPixel(x + width, y + i, 0);
+                    display.setPixel(x, y + i, 25);
+                    display.setPixel(x + width, y + i, 25);
                 }
 
                 ir.renderIcon(x + width - 20, y, 'X', 2);
                 ir.renderIcon(x + width - 40, y, 'M', 2);
                 ir.renderIcon(x + width - 60, y, '_', 2);
 
-                fr.renderString(x + 10, y + 12, "NOTEPAD");
+                fr.renderString(x + 10, y + 9, "NOTEPAD", 55, 2, 2);
             }
         }
 

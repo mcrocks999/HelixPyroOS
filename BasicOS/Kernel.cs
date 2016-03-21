@@ -182,7 +182,7 @@ namespace MicrOS
                 temp++;
             }
 
-            fr.renderString(5, 5, "HELIX ALPHA OS");
+            fr.renderString(5, 5, "HELIX PYRO OS");
             fr.renderString(125, 5, time.Hour().ToString() + ":" + time.Minute().ToString() + ":" + time.Second().ToString() + "    " + fps.ToString());
         }
 
