@@ -15,7 +15,6 @@ namespace Display
         public void init ()
         {
             screen.SetGraphicsMode(VGAScreen.ScreenSize.Size320x200, VGAScreen.ColorDepth.BitDepth8);
-            screen.Clear(0);
         }
 
         public virtual void setPixel (int x, int y, int c)

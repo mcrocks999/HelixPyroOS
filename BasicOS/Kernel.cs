@@ -11,9 +11,9 @@ using BasicOS;
 using Input;
 using Windows;
 
-namespace MicrOS
+namespace HelixPyroOS
 {
-    public class MicrOS : Sys.Kernel
+    public class HelixPyroOS : Sys.Kernel
     {
         protected int mCount = 0;
         protected int mColor = 1;
@@ -31,9 +31,12 @@ namespace MicrOS
         int temp = 0;
         int second = 0;
 
+        FontRenderer fr;
+        Font f;
+
         public Object[] renderArray;
 
-        public MicrOS()
+        public HelixPyroOS()
         { 
         }
 
@@ -43,13 +46,38 @@ namespace MicrOS
             display = new BufferedDisplayDriver();
             display.init();
 
+            f = new BasicFont();
+            fr = new FontRenderer(display, f, 0);
+
+            second = time.Second();
+
             keyboard = new KeyboardDriver();
 
-            mouse = new MouseDriver(display.getHeight(), display.getWidth());
-            mr = new MouseRenderer(mouse, display, 63);
+            // mouse = new MouseDriver(display.getHeight(), display.getWidth());
+            // mr = new MouseRenderer(mouse, display, 63);
         }
-        
+
         protected override void Run()
+        {
+            display.clear(63);
+            fr.renderString(5, 5, "HI THERE. MY NAME IS PAUL.");
+            fr.renderString(5, 25, time.Hour().ToString() + ":" + time.Minute().ToString() + ":" + time.Second().ToString() + "    " + fps.ToString());
+
+            if (second != time.Second())
+            {
+                fps = temp;
+                temp = 0;
+                second = time.Second();
+            }
+            else
+            {
+                temp++;
+            }
+
+            display.step();
+        }
+
+        /* protected override void Run()
         {
             Font f = new BasicFont();
             FontRenderer fr = new FontRenderer(display, f, 63);
@@ -70,8 +98,7 @@ namespace MicrOS
                 WindowManager.drawWindows(display, ir, dfr);
                 mr.renderMouse();
                 display.step();
-            }
-        }
+        } */
 
         public void handleMouse(MouseDriver mouse)
         {
@@ -112,7 +139,7 @@ namespace MicrOS
 
         public void draw(FontRenderer fr, FontRenderer dfr, Boolean startMenu, IconRenderer ir)
         {
-            display.clear(63);
+            display.clearReal(63);
 
             for (int i = 0; i <= 120; i++)
             {
